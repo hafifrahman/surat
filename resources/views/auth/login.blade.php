@@ -21,27 +21,6 @@
       <div class="relative">
         <x-label for="password" :value="__('Password')" />
         <x-input type="password" id="password" name="password" class="pr-10" required />
-        <button type="button" id="showPassword"
-          class="absolute inset-y-0 right-0 mt-7 flex items-center pr-3 text-sm text-slate-500 dark:text-slate-400">
-          <i id="showIcon" class="fas fa-eye-slash"></i>
-          <i id="hideIcon" class="fas fa-eye hidden"></i>
-        </button>
-        <script>
-          document.getElementById('showPassword').addEventListener('click', function() {
-            let passwordInput = document.getElementById('password');
-            let showIcon = document.getElementById('showIcon');
-            let hideIcon = document.getElementById('hideIcon');
-            if (passwordInput.type === 'password') {
-              passwordInput.type = 'text';
-              showIcon.classList.add('hidden');
-              hideIcon.classList.remove('hidden');
-            } else {
-              passwordInput.type = 'password';
-              showIcon.classList.remove('hidden');
-              hideIcon.classList.add('hidden');
-            }
-          })
-        </script>
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
       </div>
       <div class="flex items-start">
@@ -56,7 +35,7 @@
           class="ml-auto text-sm font-medium text-primary-700 hover:underline dark:text-primary-500">Lupa
           Password?</a>
       </div>
-      <div class="space-x-2">
+      <div class="sm:space-x-2">
         <x-primary-button class="mb-3 w-full px-5 py-3 sm:mb-0 sm:w-auto">Login</x-primary-button>
         <a href="/register">
           <x-secondary-button class="w-full px-5 py-3 sm:w-auto">Register</x-secondary-button>

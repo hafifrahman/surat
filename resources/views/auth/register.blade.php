@@ -23,7 +23,7 @@
         <x-input type="password" id="password" name="password" required />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
       </div>
-      <div class="space-x-2">
+      <div class="sm:space-x-2">
         <x-primary-button class="mb-3 w-full px-5 py-3 sm:mb-0 sm:w-auto">Register</x-primary-button>
         <a href="/login">
           <x-secondary-button class="w-full px-5 py-3 sm:w-auto">Login</x-secondary-button>
