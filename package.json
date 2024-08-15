@@ -18,5 +18,10 @@
         "alpinejs": "^3.14.1",
         "apexcharts": "^3.51.0",
         "flowbite": "^2.4.1"
+    },
+    "overrides": {
+        "vite": {
+            "roolup": "npm:rollup/wasm-node"
+        }
     }
 }
