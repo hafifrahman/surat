@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
@@ -38,6 +39,6 @@ class LoginRequest extends FormRequest
                 'password' => [__('auth.password')],
             ]);
         }
-        auth()->login($user);
+        Auth::login($user);
     }
 }

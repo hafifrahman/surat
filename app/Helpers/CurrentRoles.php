@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('currentRole')) {
     function currentRole()
     {
-        if (auth()->check() && auth()->user()->roles) {
-            return auth()->user()->roles->name;
+        if (Auth::check() && Auth::user()->roles) {
+            return Auth::user()->roles->name;
         }
         return null;
     }
