@@ -4,7 +4,7 @@
 @section('content')
   <div class="mx-auto flex h-screen flex-col items-center justify-center px-6 dark:bg-slate-900 xl:px-0">
     <div class="block md:max-w-lg">
-      <img src="{{ asset('flowbite-template/static/images/illustrations/500.svg') }}" alt="astronaut image">
+      <img src="{{ asset('img/errors/500.svg') }}" alt="astronaut image">
     </div>
     <div class="text-center xl:max-w-4xl">
       <h1 class="mb-5 text-2xl font-bold leading-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">Something

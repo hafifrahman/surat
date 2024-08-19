@@ -3,7 +3,7 @@
 
 @section('content')
   <div class="block md:max-w-lg">
-    <img src="{{ asset('flowbite-template/static/images/illustrations/404.svg') }}" alt="astronaut image">
+    <img src="{{ asset('img/errors/404.svg') }}" alt="astronaut image">
   </div>
   <div class="text-center xl:max-w-4xl">
     <h1 class="mb-5 text-2xl font-bold leading-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">Page not found

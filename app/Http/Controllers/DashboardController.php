@@ -20,9 +20,4 @@ class DashboardController extends Controller
         ];
         return view('admin.dashboard', compact('data'));
     }
-
-    public function user()
-    {
-        return view('user.dashboard');
-    }
 }
