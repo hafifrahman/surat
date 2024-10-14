@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('jenis_arsip', ['dokumen', 'gambar', 'surat']);
             $table->string('upload')->nullable();
             $table->date('tgl_arsip');
-            $table->string('deskripsi');
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }

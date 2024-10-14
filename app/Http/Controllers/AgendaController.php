@@ -13,10 +13,9 @@ class AgendaController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        return view('admin.agenda.index', [
-            'agendas' => Agenda::search($search)->paginate(5),
-        ]);
+        $search = $request->input('q');
+        $agendas = Agenda::search($search)->paginate(5);
+        return view('admin.agenda.index', compact('agendas'));
     }
 
     /**
@@ -32,8 +31,17 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Agenda::create($data);
+        $validated = $request->validate([
+            'nama_acara' => ['required', 'string', 'max:255'],
+            'tempat' => ['required', 'string', 'max:255'],
+            'tgl_mulai' => ['required', 'date'],
+            'tgl_selesai' => ['required', 'date'],
+            'waktu' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['nullable', 'string'],
+            'status' => ['required', 'string', 'in:pending,completed'],
+        ]);
+
+        Agenda::create($validated);
         return redirect(currentRole() . '/agenda')->with('success', 'Agenda baru ditambahkan');
     }
 
@@ -58,8 +66,17 @@ class AgendaController extends Controller
      */
     public function update(Request $request, Agenda $agenda)
     {
-        $data = $request->all();
-        $agenda->update($data);
+        $validated = $request->validate([
+            'nama_acara' => ['required', 'string', 'max:255'],
+            'tempat' => ['required', 'string', 'max:255'],
+            'tgl_mulai' => ['required', 'date'],
+            'tgl_selesai' => ['required', 'date'],
+            'waktu' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['nullable', 'string'],
+            'status' => ['required', 'string', 'in:pending,completed'],
+        ]);
+
+        $agenda->update($validated);
         return redirect(currentRole() . '/agenda')->with('success', 'Agenda telah diperbarui');
     }
 

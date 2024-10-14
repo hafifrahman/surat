@@ -37,13 +37,29 @@
         </div>
         <div class="sm:flex">
           <div class="mb-3 block items-center dark:divide-slate-700 sm:mb-0 sm:divide-x sm:divide-slate-100">
-            <form class="lg:pr-3" action="/{{ currentRole() }}/agenda" method="GET">
-              <label for="agenda-search" class="sr-only">Search</label>
-              <div class="relative mt-1 lg:w-64 xl:w-96">
-                <x-input type="text" name="search" id="agenda-search" placeholder="Cari agenda..."
-                  autocomplete="off" />
-              </div>
-            </form>
+            <div class="relative mt-1 lg:w-64 xl:w-96">
+              <form action="/{{ currentRole() }}/agenda" method="get" class="flex items-center lg:pr-3">
+                <x-input type="search" name="q" class="text-sm" placeholder="Cari agenda..."
+                  value="{{ request('q') }}" autocomplete="off" />
+                <button
+                  class="clear-query absolute inset-y-0 right-0 me-16 hidden text-xl text-slate-500 hover:text-slate-400 dark:text-slate-400 dark:hover:text-slate-300 lg:me-[4.5rem]"
+                  type="button" tabindex="-1">&times;</button>
+                <x-primary-button class="search-btn ms-2 px-2.5 py-2.5">
+                  <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                  </svg>
+                </x-primary-button>
+                <x-primary-button class="reset-query ms-2 hidden px-2.5 py-2.5">
+                  <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 18 17.94 6M18 18 6.06 6" />
+                  </svg>
+                </x-primary-button>
+              </form>
+            </div>
           </div>
           <div class="ml-auto flex items-center space-x-2 sm:space-x-3">
             @include('admin.agenda.partial.add')
@@ -56,7 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col">
+    <div class="card flex flex-col rounded-lg shadow">
       <div class="overflow-x-auto border-l border-r border-slate-200 dark:border-slate-700">
         <div class="inline-block min-w-full align-middle">
           <div class="overflow-hidden shadow">
@@ -161,7 +177,8 @@
           </div>
         </div>
       </div>
-      <div class="rounded-b-lg border border-slate-200 bg-white p-4 shadow dark:border-slate-700 dark:bg-slate-800">
+      <div
+        class="pagination-container rounded-b-lg border border-slate-200 bg-white p-4 shadow dark:border-slate-700 dark:bg-slate-800">
         {{ $agendas->links('components.pagination') }}
       </div>
     </div>

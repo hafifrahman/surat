@@ -18,6 +18,6 @@ class DashboardController extends Controller
             'suratMasukCount' => SuratMasuk::count(),
             'suratKeluarCount' => SuratKeluar::count(),
         ];
-        return view('admin.dashboard', compact('data'));
+        return view('admin.dashboard', $data);
     }
 }

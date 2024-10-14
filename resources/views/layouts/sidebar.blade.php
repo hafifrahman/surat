@@ -1,5 +1,5 @@
 <aside id="sidebar"
-  class="fixed left-0 top-0 z-20 hidden h-full w-64 flex-shrink-0 flex-col pt-16 font-normal transition-width duration-75 lg:flex"
+  class="fixed left-0 top-0 z-20 hidden h-full w-64 flex-shrink-0 flex-col pt-16 font-normal shadow transition-width duration-75 lg:flex"
   aria-label="Sidebar">
   <div
     class="relative flex min-h-screen flex-1 flex-col border-r border-slate-200 bg-white pt-0 dark:border-slate-700 dark:bg-slate-800">

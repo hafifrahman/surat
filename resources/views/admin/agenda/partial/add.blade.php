@@ -21,7 +21,7 @@
     </div>
     <div class="col-span-6 sm:col-span-3">
       <x-label for="tgl_selesai" :value="__('Tanggal Selesai')" />
-      <x-date-input name="tgl_selesai" :value="old('tgl_selesai')" required />
+      <x-date-input :name="__('tgl_selesai')" :value="old('tgl_selesai')" required />
     </div>
     <div class="col-span-6 sm:col-span-3">
       <x-label for="waktu" :value="__('Waktu')" />

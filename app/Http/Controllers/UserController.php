@@ -17,11 +17,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        return view('admin.users.index', [
-            'roles' => Role::all(),
-            'users' => User::with('roles')->search($search)->paginate(3),
-        ]);
+        $search = $request->input('q');
+        $roles = Role::all();
+        $users = User::with('roles')->search($search)->paginate(2);
+        return view('admin.users.index', compact('users', 'roles', 'search'));
     }
 
     /**
@@ -37,7 +36,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'role_id' => ['required', 'exists:roles,id_role'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+        User::create($validated);
         return redirect('/admin/users')->with('success', 'Pengguna baru ditambahkan');
     }
 
@@ -62,11 +67,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $data = $request->all();
-        if (!$request->filled('password')) {
-            unset($data['password']);
-        }
-        $user->update($data);
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', "unique:users,email,$user->id"],
+            'role_id' => ['required', 'exists:roles,id_role'],
+            'password' => ['nullable', 'string', 'min:8'],
+        ]);
+        if (!$request->filled('password')) unset($validated['password']);
+        $user->update($validated);
         return redirect('/admin/users')->with('success', 'Pengguna telah diperbarui');
     }
 

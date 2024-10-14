@@ -16,11 +16,11 @@
           <div class="block">
             <h5 class="text-2xl font-semibold text-slate-600 dark:text-slate-300">Agenda</h5>
             <p class="text-slate-500 dark:text-slate-400">Total:
-              <strong>{{ $data['agendaCount'] }}</strong>
+              <strong>{{ $agendaCount }}</strong>
             </p>
           </div>
         </div>
-        <a href="{{ route('admin.agenda.index') }}"
+        <a href="{{ route(currentRole() . '.agenda.index') }}"
           class="ms-1 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-700">
           Selengkapnya
           <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -42,11 +42,11 @@
           <div class="block">
             <h5 class="text-2xl font-semibold text-slate-600 dark:text-slate-300">Arsip</h5>
             <p class="text-slate-500 dark:text-slate-400">Total:
-              <strong>{{ $data['arsipCount'] }}</strong>
+              <strong>{{ $arsipCount }}</strong>
             </p>
           </div>
         </div>
-        <a href="{{ route('admin.arsip.index') }}"
+        <a href="{{ route(currentRole() . '.arsip.index') }}"
           class="ms-1 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-700">
           Selengkapnya
           <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -68,11 +68,11 @@
           <div class="block">
             <h5 class="text-2xl font-semibold text-slate-600 dark:text-slate-300">Surat Masuk</h5>
             <p class="text-slate-500 dark:text-slate-300">Total:
-              <strong>{{ $data['suratMasukCount'] }}</strong>
+              <strong>{{ $suratMasukCount }}</strong>
             </p>
           </div>
         </div>
-        <a href="{{ route('admin.surat-masuk.index') }}"
+        <a href="{{ route(currentRole() . '.surat-masuk.index') }}"
           class="ms-1 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-700">
           Selengkapnya
           <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -94,11 +94,11 @@
           <div class="block">
             <h5 class="text-2xl font-semibold text-slate-600 dark:text-slate-300">Surat Keluar</h5>
             <p class="text-slate-500 dark:text-slate-400">Total:
-              <strong>{{ $data['suratKeluarCount'] }}</strong>
+              <strong>{{ $suratKeluarCount }}</strong>
             </p>
           </div>
         </div>
-        <a href="{{ route('admin.surat-keluar.index') }}"
+        <a href="{{ route(currentRole() . '.surat-keluar.index') }}"
           class="ms-1 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-700">
           Selengkapnya
           <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

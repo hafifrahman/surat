@@ -15,8 +15,8 @@ class SuratMasukController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $suratMasuks = SuratMasuk::search($search)->paginate(5);
+        $search = $request->input('q');
+        $suratMasuks = SuratMasuk::search($search)->paginate(10);
         return view('admin.surat-masuk.index', compact('suratMasuks', 'search'));
     }
 
@@ -33,17 +33,23 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'penerima' => ['required', 'string', 'max:255'],
+            'perihal' => ['required', 'string', 'max:255'],
+            'tgl_surat' => ['required', 'date'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+        ]);
+
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $filename = 'SuratMasuk-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/surat-masuk', $filename);
-            $data['upload'] = $filename;
-        } else {
-            $data['upload'] = null;
+            $validated['upload'] = $filename;
         }
-        SuratMasuk::create($data);
-        return redirect()->route(currentRole() . '.surat-masuk.index');
+
+        SuratMasuk::create($validated);
+        return redirect()->route(currentRole() . '.surat-masuk.index')->with('success', 'Surat masuk baru ditambahkan');
     }
 
     /**
@@ -67,7 +73,14 @@ class SuratMasukController extends Controller
      */
     public function update(Request $request, SuratMasuk $suratMasuk)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'penerima' => ['required', 'string', 'max:255'],
+            'perihal' => ['required', 'string', 'max:255'],
+            'tgl_surat' => ['required', 'date'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+        ]);
+
         if ($request->hasFile('upload')) {
             if ($suratMasuk->upload) {
                 Storage::delete('public/uploads/surat-masuk/' . $suratMasuk->upload);
@@ -75,10 +88,11 @@ class SuratMasukController extends Controller
             $file = $request->file('upload');
             $filename = 'SuratMasuk-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/surat-masuk', $filename);
-            $data['upload'] = $filename;
+            $validated['upload'] = $filename;
         }
-        $suratMasuk->update($data);
-        return redirect()->route(currentRole() . '.surat-masuk.index');
+
+        $suratMasuk->update($validated);
+        return redirect()->route(currentRole() . '.surat-masuk.index')->with('success', 'Surat masuk telah diperbarui');
     }
 
     /**
@@ -87,7 +101,7 @@ class SuratMasukController extends Controller
     public function destroy(SuratMasuk $suratMasuk)
     {
         $suratMasuk->delete();
-        return redirect(currentRole() . '/surat-masuk');
+        return redirect(currentRole() . '/surat-masuk')->with('danger', 'Surat masuk telah dihapus');
     }
 
     public function pdf()
@@ -100,7 +114,7 @@ class SuratMasukController extends Controller
 
     public function download($filename)
     {
-        return Storage::download('public/uploads/surat-masuk/' . $filename);
+        return Storage::download("public/uploads/surat-masuk/$filename");
     }
 
     public function report(Request $request)

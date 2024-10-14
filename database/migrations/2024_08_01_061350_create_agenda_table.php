@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->time('waktu');
-            $table->string('deskripsi');
+            $table->string('deskripsi')->nullable();
             $table->enum('status', ['pending', 'completed'])->default('pending');
             $table->timestamps();
         });

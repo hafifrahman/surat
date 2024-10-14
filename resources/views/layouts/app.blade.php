@@ -36,10 +36,15 @@
 
     <div class="flex">
       <div id="main-content" class="relative h-full w-full overflow-y-auto pt-16 lg:ml-64">
+        <x-notif />
+        <x-input-error :messages="$errors->all()" type="alert" />
         @yield('content')
         @include('layouts.footer')
       </div>
     </div>
+
+    <script src="{{ asset('js/main.js') }}"></script>
+    {{-- @stack('js') --}}
 
   </body>
 

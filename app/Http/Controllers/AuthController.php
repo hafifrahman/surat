@@ -40,16 +40,11 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => $validated['password'],
-            'role_id' => 2,
-        ]);
+        $user = User::create(array_merge($validated, ['role_id' => 2]));
 
         Auth::login($user);
 
-        return redirect('/login');
+        return redirect(currentRole() . '/dashboard');
     }
 
     public function logout()

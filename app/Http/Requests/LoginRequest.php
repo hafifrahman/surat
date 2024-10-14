@@ -33,12 +33,13 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $credentials = $this->validated();
+        $remember = $this->filled('remember');
         $user = User::where('email', $credentials['email'])->first();
-        if (!$user || !password_verify($credentials['password'], $user->password)) {
+        if (!password_verify($credentials['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'password' => [__('auth.password')],
             ]);
         }
-        Auth::login($user);
+        Auth::login($user, $remember);
     }
 }

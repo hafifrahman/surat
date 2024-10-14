@@ -19,18 +19,19 @@ class UserSeeder extends Seeder
             ['name' => 'user'],
         ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'test',
-            'role_id' => 1,
-        ]);
-
-        User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@example.com',
-            'password' => 'test',
-            'role_id' => 2,
+        User::factory()->createMany([
+            [
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+                'password' => 'test',
+                'role_id' => 1,
+            ],
+            [
+                'name' => 'User',
+                'email' => 'user@example.com',
+                'password' => 'test',
+                'role_id' => 2,
+            ]
         ]);
 
         User::factory(4)->create();

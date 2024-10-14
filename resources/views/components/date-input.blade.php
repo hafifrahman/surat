@@ -1,6 +1,6 @@
 @props(['name', 'value'])
 
-<div class="relative max-w-sm">
+<div class="relative">
   <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
     <svg class="h-4 w-4 text-slate-500 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
       fill="currentColor" viewBox="0 0 20 20">

@@ -14,8 +14,8 @@ class ArsipController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $arsips = Arsip::search($search)->paginate(5);
+        $search = $request->input('q');
+        $arsips = Arsip::search($search)->paginate(10);
         return view('admin.arsip.index', compact('arsips', 'search'));
     }
 
@@ -32,16 +32,23 @@ class ArsipController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'nama_arsip' => ['required', 'string', 'max:255'],
+            'nomor_arsip' => ['required', 'string', 'max:255'],
+            'jenis_arsip' => ['required', 'in:dokumen,gambar,surat'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+            'tgl_arsip' => ['required', 'date'],
+            'deskripsi' => ['nullable', 'string'],
+        ]);
+
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $filename = 'Arsip-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/arsip', $filename);
-            $data['upload'] = $filename;
-        } else {
-            $data['upload'] = null;
+            $validated['upload'] = $filename;
         }
-        Arsip::create($data);
+
+        Arsip::create($validated);
         return redirect(currentRole() . '/arsip')->with('success', 'Arsip baru ditambahkan');
     }
 
@@ -66,17 +73,26 @@ class ArsipController extends Controller
      */
     public function update(Request $request, Arsip $arsip)
     {
-        $data = $request->except('upload');
+        $validated = $request->validate([
+            'nama_arsip' => ['required', 'string', 'max:255'],
+            'nomor_arsip' => ['required', 'string', 'max:255'],
+            'jenis_arsip' => ['required', 'in:dokumen,gambar,surat'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+            'tgl_arsip' => ['required', 'date'],
+            'deskripsi' => ['nullable', 'string'],
+        ]);
+
         if ($request->hasFile('upload')) {
             if ($arsip->upload) {
-                Storage::delete('public/uploads/arsip/' . $arsip->upload);
+                Storage::delete("public/uploads/arsip/$arsip->upload");
             }
             $file = $request->file('upload');
             $filename = 'Arsip-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/arsip', $filename);
-            $data['upload'] = $filename;
+            $validated['upload'] = $filename;
         }
-        $arsip->update($data);
+
+        $arsip->update($validated);
         return redirect(currentRole() . '/arsip')->with('success', 'Arsip telah diperbarui');
     }
 
@@ -91,7 +107,7 @@ class ArsipController extends Controller
 
     public function download($filename)
     {
-        return Storage::download('public/uploads/arsip/' . $filename);
+        return Storage::download("public/uploads/arsip/$filename");
     }
 
     public function pdf()

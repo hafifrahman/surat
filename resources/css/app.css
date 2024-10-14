@@ -4,15 +4,15 @@
 
 /* chart styles */
 .apexcharts-tooltip {
-    @apply bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-0 rounded-lg shadow-lg !important;
+    @apply bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-400 border-0 rounded-lg shadow-lg !important;
 }
 
 .apexcharts-tooltip .apexcharts-tooltip-title {
-    @apply py-2 px-4 bg-gray-100 dark:bg-gray-600 border-b border-gray-200 dark:border-gray-500 !important;
+    @apply py-2 px-4 bg-slate-100 dark:bg-slate-600 border-b border-slate-200 dark:border-slate-500 !important;
 }
 
 .apexcharts-xaxistooltip {
-    @apply text-gray-500 border-0 bg-white dark:bg-gray-700 dark:text-gray-300 rounded-lg shadow-lg !important;
+    @apply text-slate-500 border-0 bg-white dark:bg-slate-700 dark:text-slate-300 rounded-lg shadow-lg !important;
 }
 
 .apexcharts-tooltip .apexcharts-tooltip-text-y-value {
@@ -34,24 +34,24 @@
 }
 
 .svgMap-map-image {
-    @apply dark:bg-gray-800;
+    @apply dark:bg-slate-800;
 }
 
 .svgMap-map-controls-wrapper {
-    @apply shadow-none left-0 bottom-0 dark:bg-gray-800 !important;
+    @apply shadow-none left-0 bottom-0 dark:bg-slate-800 !important;
 }
 
 .svgMap-map-controls-zoom {
-    @apply dark:bg-gray-800 !important;
+    @apply dark:bg-slate-800 !important;
 }
 
 .svgMap-map-wrapper .svgMap-control-button {
-    @apply rounded-lg border-solid border border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-600 !important;
+    @apply rounded-lg border-solid border border-slate-300 hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-600 !important;
 }
 
 .svgMap-map-wrapper .svgMap-control-button.svgMap-zoom-button:after,
 .svgMap-map-wrapper .svgMap-control-button.svgMap-zoom-button:before {
-    @apply dark:bg-gray-600 dark:hover:bg-gray-500;
+    @apply dark:bg-slate-600 dark:hover:bg-slate-500;
 }
 
 .svgMap-map-wrapper .svgMap-control-button:first-child {
@@ -59,7 +59,7 @@
 }
 
 .svgMap-tooltip {
-    @apply bg-white dark:bg-gray-700 shadow-lg rounded-lg border-0 text-left !important;
+    @apply bg-white dark:bg-slate-700 shadow-lg rounded-lg border-0 text-left !important;
 }
 
 .svgMap-tooltip
@@ -76,7 +76,7 @@
 }
 
 .svgMap-tooltip .svgMap-tooltip-title {
-    @apply inline-block pt-2 text-gray-900 dark:text-white font-semibold text-sm !important;
+    @apply inline-block pt-2 text-slate-900 dark:text-white font-semibold text-sm !important;
 }
 
 .svgMap-tooltip .svgMap-tooltip-content {
@@ -84,11 +84,11 @@
 }
 
 .svgMap-tooltip .svgMap-tooltip-content table td {
-    @apply text-sm text-left text-gray-500 dark:text-gray-400 font-normal !important;
+    @apply text-sm text-left text-slate-500 dark:text-slate-400 font-normal !important;
 }
 
 .svgMap-tooltip .svgMap-tooltip-content table td span {
-    @apply text-sm text-left text-gray-900 dark:text-white font-semibold !important;
+    @apply text-sm text-left text-slate-900 dark:text-white font-semibold !important;
 }
 
 .svgMap-tooltip .svgMap-tooltip-pointer {
@@ -96,7 +96,7 @@
 }
 
 .svgMap-map-wrapper .svgMap-country {
-    @apply dark:stroke-gray-800;
+    @apply dark:stroke-slate-800;
 }
 
 /* kanban styles */
@@ -107,7 +107,7 @@
 }
 
 .ghost-card {
-    @apply bg-gray-100/40 dark:bg-gray-600/40 !important;
+    @apply bg-slate-100/40 dark:bg-slate-600/40 !important;
 }
 
 /* calendar styles */
@@ -121,11 +121,11 @@
 }
 
 .fc .fc-toolbar-title {
-    @apply text-lg text-gray-900 font-semibold !important;
+    @apply text-lg text-slate-900 font-semibold !important;
 }
 
 .fc .fc-today-button {
-    @apply rounded-lg border border-gray-200 bg-white text-sm font-medium px-4 py-2 text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-2 focus:ring-primary-700 focus:text-primary-700 !important;
+    @apply rounded-lg border border-slate-200 bg-white text-sm font-medium px-4 py-2 text-slate-900 hover:bg-slate-100 hover:text-primary-700 focus:z-10 focus:ring-2 focus:ring-primary-700 focus:text-primary-700 !important;
 }
 
 .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
@@ -134,23 +134,23 @@
 
 .fc .fc-button-group .fc-prev-button,
 .fc .fc-button-group .fc-next-button {
-    @apply bg-white border-0 text-gray-500 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 rounded inline-flex focus:bg-gray-100 focus:ring-1 focus:ring-gray-100 justify-center !important;
+    @apply bg-white border-0 text-slate-500 hover:text-slate-900 cursor-pointer p-2 hover:bg-slate-100 rounded inline-flex focus:bg-slate-100 focus:ring-1 focus:ring-slate-100 justify-center !important;
 }
 
 .fc .fc-scrollgrid {
-    @apply border-l-0 border-gray-200 !important;
+    @apply border-l-0 border-slate-200 !important;
 }
 
 .fc .fc-daygrid-day-frame {
-    @apply border-gray-200 !important;
+    @apply border-slate-200 !important;
 }
 
 .fc .fc-col-header-cell-cushion {
-    @apply py-3 text-base text-gray-900 font-semibold !important;
+    @apply py-3 text-base text-slate-900 font-semibold !important;
 }
 
 .fc-theme-standard th {
-    @apply border-0 border-b border-gray-200 !important;
+    @apply border-0 border-b border-slate-200 !important;
 }
 
 .fc-direction-ltr .fc-daygrid-event.fc-event-end {
@@ -170,7 +170,17 @@
 }
 
 .fc .fc-daygrid-day-frame {
-    @apply hover:bg-gray-50 cursor-pointer !important;
+    @apply hover:bg-slate-50 cursor-pointer !important;
+}
+
+/* validation */
+
+input.valid {
+    @apply bg-green-50 border border-green-500 text-green-900 dark:text-green-400 shadow-sm placeholder-green-700 dark:placeholder-green-500 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-slate-700 dark:border-green-500 sm:text-sm !important;
+}
+
+input.invalid {
+    @apply border text-slate-900 dark:text-white shadow-sm border-red-500 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-slate-700 dark:border-red-500 sm:text-sm !important;
 }
 
 /* feed styles */

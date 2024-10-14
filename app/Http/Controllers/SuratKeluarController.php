@@ -14,8 +14,8 @@ class SuratKeluarController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $suratKeluar = SuratKeluar::search($search)->paginate(5);
+        $search = $request->input('q');
+        $suratKeluar = SuratKeluar::search($search)->paginate(10);
         return view('admin.surat-keluar.index', compact('suratKeluar', 'search'));
     }
 
@@ -32,16 +32,22 @@ class SuratKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'pengirim' => ['required', 'string', 'max:255'],
+            'perihal' => ['required', 'string', 'max:255'],
+            'tgl_surat' => ['required', 'date'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+        ]);
+
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $filename = 'SuratKeluar-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/surat-keluar', $filename);
-            $data['upload'] = $filename;
-        } else {
-            $data['upload'] = null;
+            $validated['upload'] = $filename;
         }
-        SuratKeluar::create($data);
+
+        SuratKeluar::create($validated);
         return redirect(currentRole() . '/surat-keluar')->with('success', 'Surat keluar baru ditambahkan');
     }
 
@@ -66,7 +72,14 @@ class SuratKeluarController extends Controller
      */
     public function update(Request $request, SuratKeluar $suratKeluar)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'pengirim' => ['required', 'string', 'max:255'],
+            'perihal' => ['required', 'string', 'max:255'],
+            'tgl_surat' => ['required', 'date'],
+            'upload' => ['nullable', 'mimes:pdf,doc,docx,xlsx,png,jpg,jpeg'],
+        ]);
+
         if ($request->hasFile('upload')) {
             if ($suratKeluar->upload) {
                 Storage::delete('public/uploads/surat-keluar/' . $suratKeluar->upload);
@@ -74,9 +87,10 @@ class SuratKeluarController extends Controller
             $file = $request->file('upload');
             $filename = 'SuratKeluar-' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/uploads/surat-keluar', $filename);
-            $data['upload'] = $filename;
+            $validated['upload'] = $filename;
         }
-        $suratKeluar->update($data);
+
+        $suratKeluar->update($validated);
         return redirect(currentRole() . '/surat-keluar')->with('success', 'Surat keluar telah diperbarui');
     }
 

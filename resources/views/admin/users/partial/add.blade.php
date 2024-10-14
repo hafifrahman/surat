@@ -8,10 +8,12 @@
     <div class="col-span-6">
       <x-label for="name" :value="__('Name')" />
       <x-input id="name" type="text" name="name" required />
+      <x-input-error class="mt-2" :messages="$errors->get('name')" />
     </div>
     <div class="col-span-6">
       <x-label for="email" :value="__('Email')" />
       <x-input id="email" type="email" name="email" required />
+      <x-input-error class="mt-2" :messages="$errors->get('email')" />
     </div>
     <div class="col-span-6">
       <x-label for="role_id" :value="__('Role')" />
@@ -22,10 +24,12 @@
           <option value="{{ $role->id_role }}">{{ $role->name }}</option>
         @endforeach
       </select>
+      <x-input-error class="mt-2" :messages="$errors->get('role_id')" />
     </div>
     <div class="col-span-6">
       <x-label for="password" :value="__('Password')" />
       <x-input id="password" type="password" name="password" required />
+      <x-input-error class="mt-2" :messages="$errors->get('password')" />
     </div>
   </div>
 </x-modal-form>

@@ -21,8 +21,8 @@
        <x-input id="upload" class="px-0 py-0" type="file" name="upload" />
      </div>
      <div class="col-span-6 sm:col-span-3">
-       <x-label :value="__('Tanggal Arsip')" />
-       <x-date-input name="tgl_arsip" :value="__($surat->tgl_surat)" />
+       <x-label :value="__('Tanggal Surat')" />
+       <x-date-input name="tgl_surat" :value="__($surat->tgl_surat)" />
      </div>
      <div class="col-span-6">
        <x-label for="perihal" :value="__('Perihal')" />
