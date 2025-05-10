@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Exports\UsersExport;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $search = $request->input('q');
         $roles = Role::all();
-        $users = User::with('roles')->search($search)->paginate(2);
+        $users = User::with('roles')->search($search)->paginate(10);
         return view('admin.users.index', compact('users', 'roles', 'search'));
     }
 

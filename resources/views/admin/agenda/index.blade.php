@@ -133,11 +133,11 @@
                     </td>
                     <td
                       class="max-w-xs overflow-hidden truncate px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300">
-                      {{ $agenda->tgl_mulai }}
+                      {{ Carbon\Carbon::parse($agenda->tgl_mulai)->translatedFormat('j F Y') }}
                     </td>
                     <td
                       class="max-w-xs overflow-hidden truncate px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300">
-                      {{ $agenda->tgl_selesai }}
+                      {{ Carbon\Carbon::parse($agenda->tgl_selesai)->translatedFormat('j F Y') }}
                     </td>
                     <td
                       class="max-w-xs overflow-hidden truncate px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300">

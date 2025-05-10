@@ -14,7 +14,7 @@ class AgendaController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('q');
-        $agendas = Agenda::search($search)->paginate(5);
+        $agendas = Agenda::search($search)->paginate(10);
         return view('admin.agenda.index', compact('agendas'));
     }
 
