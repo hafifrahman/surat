@@ -6,13 +6,11 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Notifications\ResetPasswordNotification;
-use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthController extends Controller
 {
@@ -57,13 +55,13 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
-            'password' => ['required', Password::defaults(), 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'same:password', 'min:8'],
         ]);
 
         $request->user()->update($validated);
 
-        return redirect()->back();
+        return back()->with('success', __('passwords.changed'));
     }
 
     public function forgotPasswordForm()
